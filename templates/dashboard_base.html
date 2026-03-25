@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{{ title if title else "ComfortSpace Dashboard" }}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <nav class="navbar">
+    <div class="nav-left">🧘‍♀️ MindWell</div>
+    <div class="nav-right">
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('therapists') }}">Find a Therapist</a>
+      <div class="dropdown">
+        <button class="dropbtn">Stories ▼</button>
+        <div class="dropdown-content">
+          <a href="https://www.youtube.com/watch?v=8SOQduoLgRw" target="_blank">Overcoming Anxiety</a>
+          <a href="https://www.youtube.com/watch?v=2z9gW9zZK0k" target="_blank">Hope & Healing</a>
+          <a href="https://www.youtube.com/watch?v=p8o7z2f_fPw" target="_blank">Life After Depression</a>
+        </div>
+      </div>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </nav>
+
+  <div class="content">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>ComfortSpace Dashboard</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-body">
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <div class="nav-left">🧘‍♀️ ComfortSpace</div>
+    <div class="nav-right">
+      <a href="{{ url_for('dashboard') }}">Dashboard</a>
+      <a href="{{ url_for('therapists') }}">Find a Therapist</a>
+      <div class="dropdown">
+        <button class="dropbtn">Stories ▼</button>
+        <div class="dropdown-content">
+          <a href="https://www.youtube.com/watch?v=8SOQduoLgRw" target="_blank">Overcoming Anxiety</a>
+          <a href="https://www.youtube.com/watch?v=2z9gW9zZK0k" target="_blank">Hope & Healing</a>
+          <a href="https://www.youtube.com/watch?v=p8o7z2f_fPw" target="_blank">Life After Depression</a>
+        </div>
+      </div>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    </div>
+  </nav>
+
+  <!-- DASHBOARD CONTENT -->
+  <div class="dashboard-container">
+    <!-- Left Section -->
+    <div class="left-section">
+      <div class="thoughts">
+        <h3>🌞 Positive Thoughts</h3>
+        <ul>
+          {% for t in thoughts %}
+            <li>{{ t }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="diary">
+        <h3>📝 Your Diary</h3>
+        <form method="POST">
+          <textarea name="diary_entry" placeholder="How are you feeling today?"></textarea>
+          <button type="submit">Save Entry</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Right Section -->
+    <div class="chatbot">
+      <h3>💬 MindBot</h3>
+      <div id="chatbox"></div>
+      <div class="chat-input">
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type how you feel..."
+          onkeydown="if(event.key==='Enter'){sendMessage();}"
+        />
+        <button type="button" onclick="sendMessage()">Send</button>
+      </div>
+    </div>
+  </div>
+
+<script>
+  // --- Chatbot responses grouped by emotion ---
+  const greetings = [
+    "Hey there! 😊 How are you feeling today?",
+    "Hello! 🌞 I’m happy to see you here.",
+    "Hi friend! 💖 How’s your day going?",
+    "Hey! 🌸 I’m MindBot, here to listen anytime."
+  ];
+
+  const comforting = [
+    "I’m really sorry you’re feeling this way 💙 Remember, tough days don’t last forever.",
+    "It’s okay to feel down sometimes 🌧️ Just remember, you’ve already made it through 100% of your worst days!",
+    "You’re stronger than you think 💪 and I believe in you.",
+    "Take a deep breath 🌿 and be kind to yourself — healing takes time."
+  ];
+
+  const neutral = [
+    "That’s interesting! Tell me more 😊",
+    "I love hearing from you 💬",
+    "Hmm, I get you — want to talk more about it?",
+    "I’m here for you 🌼 Whatever’s on your mind, I’m listening."
+  ];
+
+  // --- Function to detect emotion from user input ---
+  function detectEmotion(message) {
+    const lowerMsg = message.toLowerCase();
+
+    if (lowerMsg.includes("hi") || lowerMsg.includes("hello") || lowerMsg.includes("hey")) {
+      return "greeting";
+    }
+
+    if (
+      lowerMsg.includes("sad") ||
+      lowerMsg.includes("depress") ||
+      lowerMsg.includes("tired") ||
+      lowerMsg.includes("lonely") ||
+      lowerMsg.includes("cry") ||
+      lowerMsg.includes("bad") ||
+      lowerMsg.includes("upset")
+    ) {
+      return "sad";
+    }
+
+    return "neutral";
+  }
+
+  // --- Chatbot logic ---
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const chatbox = document.getElementById("chatbox");
+    const userText = input.value.trim();
+
+    if (userText === "") return;
+
+    // Display user message
+    chatbox.innerHTML += `<div class='user-msg'>You: ${userText}</div>`;
+    input.value = "";
+
+    // Detect tone and choose appropriate response
+    const emotion = detectEmotion(userText);
+    let botReply = "";
+
+    if (emotion === "greeting") {
+      botReply = greetings[Math.floor(Math.random() * greetings.length)];
+    } else if (emotion === "sad") {
+      botReply = comforting[Math.floor(Math.random() * comforting.length)];
+    } else {
+      botReply = neutral[Math.floor(Math.random() * neutral.length)];
+    }
+
+    // Simulate thinking delay
+    setTimeout(() => {
+      chatbox.innerHTML += `<div class='bot-msg'>MindBot: ${botReply}</div>`;
+      chatbox.scrollTop = chatbox.scrollHeight;
+    }, 600);
+  }
+</script>
+</body>
+</html>

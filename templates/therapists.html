@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Find a Therapist - MindWell</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(120deg, #d8eaff, #a1c4fd);
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+    }
+
+    .therapist-section {
+      text-align: center;
+      margin-top: 80px;
+      background: white;
+      padding: 40px 50px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 900px;
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    h2 {
+      color: #0072ff;
+      margin-bottom: 20px;
+    }
+
+    p {
+      font-size: 17px;
+      color: #444;
+      margin-bottom: 30px;
+    }
+
+    .therapist-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .therapist-card {
+      background: #ffffff;
+      border: 1px solid #d9e6ff;
+      padding: 25px;
+      border-radius: 12px;
+      width: 260px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      transition: 0.3s ease;
+      text-align: center;
+    }
+
+    .therapist-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    .therapist-card h4 {
+      color: #005fcc;
+      margin-bottom: 10px;
+      font-size: 20px;
+    }
+
+    .therapist-card p {
+      font-size: 16px;
+      color: #333;
+    }
+
+    /* Back to Dashboard Button */
+    .back-btn {
+      display: inline-block;
+      margin-top: 30px;
+      background-color: #0072ff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      padding: 12px 25px;
+      cursor: pointer;
+      font-size: 16px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    .back-btn:hover {
+      background-color: #005fcc;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 768px) {
+      .therapist-card {
+        width: 90%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="therapist-section">
+    <h2>🧠 Certified Therapists</h2>
+    <p>If you ever feel like you need help, please reach out. You deserve support 💙</p>
+    
+    <div class="therapist-list">
+      {% for t in therapists %}
+      <div class="therapist-card">
+        <h4>{{ t.name }}</h4>
+        <p>📞 {{ t.contact }}</p>
+      </div>
+      {% endfor %}
+    </div>
+
+    <a href="{{ url_for('dashboard') }}" class="back-btn">← Back to Dashboard</a>
+  </div>
+</body>
+</html>

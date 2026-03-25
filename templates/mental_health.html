@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Mental Health Check</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
+  <!-- Keep inline CSS, but we'll clean up and add page class support -->
+  <style>
+    /* --- new: center the form only on this page, not globally --- */
+    body.form-body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(120deg, #d8eaff, #a1c4fd);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+
+    .form-container {
+      width: 60%;
+      max-width: 600px;
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 0 25px rgba(0,0,0,0.2);
+      text-align: center;
+      animation: fadeIn 0.5s ease-in-out;
+    }
+
+    h2 {
+      color: #0072ff;
+      margin-bottom: 20px;
+    }
+
+    label {
+      display: block;
+      font-size: 18px;
+      margin-top: 15px;
+      color: #333;
+      text-align: left;
+    }
+
+    select {
+      width: 100%;
+      padding: 10px;
+      margin-top: 5px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    button {
+      margin-top: 25px;
+      padding: 14px 28px;
+      font-size: 18px;
+      background-color: #0072ff;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #005fcc;
+    }
+
+    /* --- optional: soft fade-in effect --- */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(15px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<!-- --- CHANGED: added class 'form-body' so style.css recognizes this page --- -->
+<body class="form-body">
+  <div class="form-container">
+    <h2>Mental Health Self-Check 🧘‍♀️</h2>
+    <form method="POST">
+      <label>1. How often do you feel stressed lately?</label>
+      <select name="q1">
+        <option>Almost never</option>
+        <option>Sometimes</option>
+        <option>Often</option>
+        <option>Almost always</option>
+      </select>
+
+      <label>2. How would you rate your sleep quality?</label>
+      <select name="q2">
+        <option>Excellent</option>
+        <option>Good</option>
+        <option>Fair</option>
+        <option>Poor</option>
+      </select>
+
+      <label>3. How connected do you feel to others?</label>
+      <select name="q3">
+        <option>Very connected</option>
+        <option>Somewhat connected</option>
+        <option>Neutral</option>
+        <option>Disconnected</option>
+      </select>
+
+      <label>4. How often do you take breaks to relax?</label>
+      <select name="q4">
+        <option>Frequently</option>
+        <option>Sometimes</option>
+        <option>Rarely</option>
+        <option>Never</option>
+      </select>
+
+      <label>5. How would you describe your mood overall?</label>
+      <select name="q5">
+        <option>Very positive</option>
+        <option>Mostly positive</option>
+        <option>Neutral</option>
+        <option>Negative</option>
+      </select>
+
+      <button type="submit">Submit Responses</button>
+    </form>
+  </div>
+</body>
+</html>
