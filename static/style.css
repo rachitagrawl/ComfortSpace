@@ -1,0 +1,289 @@
+/* =========================================================
+   ORIGINAL LOGIN / SIGNUP PAGE STYLES (KEEP UNTOUCHED)
+   ========================================================= */
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(to right, #0f2641, #0f2641);
+    display: flex;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    font-size: 25px;
+}
+
+.container {
+    background: #F0FFFF;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.2);
+    text-align: center;
+}
+
+input {
+    width: 80%;
+    padding: 10px;
+    margin: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #3700ff;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #005fcc;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+/* =========================================================
+   NEW DASHBOARD & NAVBAR STYLES (ADDED BELOW)
+   ========================================================= */
+
+/* ---------- General Layout for Dashboard ---------- */
+body.dashboard-body {
+  font-family: 'Segoe UI', sans-serif;
+  margin: 0;
+  background: linear-gradient(120deg, #d8eaff, #f3f9ff);
+  color: #333;
+  display: block;
+  height: auto; /* Prevent full-page stretching for dashboard */
+}
+
+h2, h3, h4 {
+  color: #0072ff;
+  font-weight: 600;
+}
+
+/* ---------- Navbar (Now Fixed at Top) ---------- */
+.navbar {
+  background-color: #87cefa; /* Soothing sky blue */
+  color: white;
+  padding: 15px 40px; /* Increased padding for breathing space */
+  display: flex;
+  justify-content: space-between; /* Logo left, links right */
+  align-items: center; /* Vertically center items */
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-sizing: border-box; /* Ensures padding doesn’t push content out */
+}
+
+
+.nav-left {
+  font-weight: bold;
+  font-size: 22px;
+  color: white;
+}
+
+.navbar a {
+  color: white;
+  margin: 0 10px;
+  text-decoration: none;
+  font-size: 16px;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: #eef6ff;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropbtn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background: white;
+  min-width: 230px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  border-radius: 8px;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 10px 15px;
+  display: block;
+  text-decoration: none;
+  border-radius: 6px;
+}
+
+.dropdown-content a:hover {
+  background-color: #f0f0f0;
+}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+/* ---------- Dashboard Grid Layout ---------- */
+.dashboard-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+  padding: 40px;
+  margin-top: 20px;
+}
+
+.left-section {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* ---------- Dashboard Cards (Thoughts, Diary, Chatbot) ---------- */
+.thoughts, .diary, .chatbot {
+  background: white;
+  border-radius: 14px;
+  padding: 25px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  transition: 0.3s;
+}
+
+.thoughts:hover, .diary:hover, .chatbot:hover {
+  transform: translateY(-3px);
+}
+
+/* Positive Thoughts List */
+.thoughts ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.thoughts li {
+  background: #e3f2ff;
+  padding: 10px;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  font-size: 16px;
+}
+
+/* ---------- Diary Section ---------- */
+textarea {
+  width: 100%;
+  height: 120px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  resize: none;
+}
+
+/* Override dashboard buttons only (login buttons remain same) */
+.dashboard-container button {
+  background-color: #0072ff;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  cursor: pointer;
+  margin-top: 10px;
+  font-size: 15px;
+}
+
+.dashboard-container button:hover {
+  background-color: #005fcc;
+}
+
+/* ---------- Chatbot Section ---------- */
+.chatbot {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+#chatbox {
+  background: #f5f9ff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 10px;
+  height: 400px;
+  overflow-y: auto;
+  margin-bottom: 10px;
+}
+
+.user-msg {
+  background: #cfe2ff;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 6px;
+}
+
+.bot-msg {
+  background: #d1ffd7;
+  padding: 8px;
+  margin: 5px 0;
+  border-radius: 6px;
+}
+
+.chat-input {
+  display: flex;
+  gap: 10px;
+}
+
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* ---------- Therapist Page Styling ---------- */
+.therapist-section {
+  text-align: center;
+  padding: 40px;
+}
+
+.therapist-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+}
+
+.therapist-card {
+  background: white;
+  border: 1px solid #d9e6ff;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+  width: 260px;
+  transition: 0.3s ease;
+}
+
+.therapist-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* ---------- Responsive Design ---------- */
+@media (max-width: 900px) {
+  .dashboard-container {
+    grid-template-columns: 1fr;
+  }
+  #chatbox {
+    height: 300px;
+  }
+}
